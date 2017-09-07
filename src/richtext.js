@@ -1,5 +1,6 @@
-import PrismicRichText, {Elements} from 'prismic-richtext';
-import { Link as LinkHelper } from 'prismic-helpers';
+const PrismicRichText = require('prismic-richtext');
+const LinkHelper = require('prismic-helpers').Link;
+const { Elements } = PrismicRichText;
 
 function serialize(linkResolver, type, element, content, children) {
   switch(type) {
@@ -37,7 +38,7 @@ function serializeImage(linkResolver, element) {
   const linkUrl = element.linkTo ? LinkHelper.url(element.linkTo, linkResolver) : null;
   const wrapperClassList = [element.label || '', 'block-img'];
   const img = `<img src="${element.url}" alt="${element.alt || ''}" copyright="${element.copyright || ''}">`;
-  
+
   return (`
     <p class=${wrapperClassList.join(' ')}>
       ${linkUrl ? `<a href="${linkUrl}">${img}</a>` : img}
@@ -51,7 +52,7 @@ function serializeEmbed(element) {
       data-oembed-type="${element.type}"
       data-oembed-provider="${element.provider_name}
       ${label(element)}>
-          
+
       ${element.oembed.html}
     </div>
   `);
