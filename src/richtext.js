@@ -70,7 +70,7 @@ function serializeSpan(content) {
   return (content || '').replace(/\n/g, "<br />");
 }
 
-export default {
+module.exports = {
   asText(structuredText) {
     return PrismicRichText.asText(structuredText);
   },
